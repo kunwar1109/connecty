@@ -9,7 +9,7 @@ export default function SignInPage() {
       action=""
       className="w-full max-w-[300px] md:max-w-[500px] flex flex-col gap-8 border border-input p-6 rounded-md"
     >
-      <h3 className="text-2xl">Sign In to Connecty</h3>
+      <h3 className="text-2xl">Sign IN to Connecty</h3>
       <div className="flex flex-col gap-4">
         <Label htmlFor="user-id">Email or Username</Label>
         <Input
@@ -20,7 +20,7 @@ export default function SignInPage() {
       </div>
       <div className="flex flex-col gap-4">
         <Label htmlFor="password">Password</Label>
-        <PasswordInput />
+        <PasswordInput name="password" />
       </div>
       <div className="flex justify-start items-center">
         <SubmitButton text="Sign In" loadingText="Signing In..." />
