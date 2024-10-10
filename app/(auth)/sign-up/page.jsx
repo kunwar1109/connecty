@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { PasswordInput } from "../_components/password-input";
 import { SubmitButton } from "../_components/submit-button";
 import { useRef, useState } from "react";
+import { handler } from "@/actions/singup";
 
 export default function SignUpPage() {
   const [errors, setErrors] = useState({});
@@ -65,9 +66,27 @@ export default function SignUpPage() {
     }
   };
 
+  const signUpSubmit = async (formData) => {
+    const firstName = formData.get("firstName");
+    const lastName = formData.get("lastName");
+    const userName = formData.get("userName");
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    console.log({ firstName, lastName, userName, email, password });
+    const data = await handler({
+      firstName,
+      lastName,
+      userName,
+      email,
+      password,
+    });
+    console.log(data);
+  };
+
   return (
     <form
-      action=""
+      action={signUpSubmit}
       className="w-full max-w-[350px] md:max-w-[500px] flex flex-col gap-4 border border-input p-6 rounded-md"
     >
       <h3 className="text-2xl mb-2">Sign Up to Connecty</h3>
