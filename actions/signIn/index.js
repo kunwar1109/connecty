@@ -1,16 +1,14 @@
 "use server";
 
 export async function handler(data) {
-  const { firstName, lastName, userName, email, password } = data;
+  const { userName, email, password } = data;
 
-  const response = await fetch("http://localhost:8000/auth/signup", {
+  const response = await fetch("http://localhost:8000/auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      firstName,
-      lastName,
       userName,
       email,
       password,

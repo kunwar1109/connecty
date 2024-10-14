@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { PasswordInput } from "../_components/password-input";
 import { SubmitButton } from "../_components/submit-button";
 import { useRef, useState } from "react";
+import { handler } from "@/actions/signIn";
 
 export default function SignInPage() {
   const [nameErr, setNameErr] = useState(null);
@@ -17,9 +18,28 @@ export default function SignInPage() {
       setNameErr(null);
     }
   };
+
+  const signInAction = async (formData) => {
+    const user = formData.get("user-id");
+    const password = formData.get("password");
+    const payload = { password };
+    if (
+      user.match(
+        /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+      )
+    ) {
+      payload["email"] = user;
+    } else {
+      payload["userName"] = user;
+    }
+
+    console.log(payload);
+    const resp = await handler(payload);
+    console.log(resp);
+  };
   return (
     <form
-      action=""
+      action={signInAction}
       className="w-full max-w-[300px] md:max-w-[500px] flex flex-col gap-4 border border-input p-6 rounded-md"
     >
       <h3 className="text-2xl">Sign IN to Connecty</h3>

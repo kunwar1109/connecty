@@ -67,13 +67,13 @@ export default function SignUpPage() {
   };
 
   const signUpSubmit = async (formData) => {
+    //error handling client side if clicked submit
     const firstName = formData.get("firstName");
     const lastName = formData.get("lastName");
     const userName = formData.get("userName");
     const email = formData.get("email");
     const password = formData.get("password");
 
-    console.log({ firstName, lastName, userName, email, password });
     const data = await handler({
       firstName,
       lastName,
@@ -81,7 +81,6 @@ export default function SignUpPage() {
       email,
       password,
     });
-    console.log(data);
   };
 
   return (
