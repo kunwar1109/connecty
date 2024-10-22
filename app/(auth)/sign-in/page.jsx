@@ -6,6 +6,7 @@ import { PasswordInput } from "../_components/password-input";
 import { SubmitButton } from "../_components/submit-button";
 import { useRef, useState } from "react";
 import { handler } from "@/actions/signIn";
+import { redirect } from "next/navigation";
 
 export default function SignInPage() {
   const [nameErr, setNameErr] = useState(null);
@@ -20,6 +21,7 @@ export default function SignInPage() {
   };
 
   const signInAction = async (formData) => {
+    //return if client side validation failsss
     const user = formData.get("user-id");
     const password = formData.get("password");
     const payload = { password };
@@ -35,7 +37,11 @@ export default function SignInPage() {
 
     console.log(payload);
     const resp = await handler(payload);
+    //if success -> redirect to chats
     console.log(resp);
+    if (resp?.token) {
+      redirect("/chats");
+    }
   };
   return (
     <form
