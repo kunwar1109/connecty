@@ -1,6 +1,6 @@
 "use server";
 
-export async function handler(data) {
+export async function signUpHandler(data) {
   const { firstName, lastName, userName, email, password } = data;
 
   const response = await fetch("http://localhost:8000/auth/signup", {

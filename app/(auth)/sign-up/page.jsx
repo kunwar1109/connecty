@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { PasswordInput } from "../_components/password-input";
 import { SubmitButton } from "../_components/submit-button";
 import { useRef, useState } from "react";
-import { handler } from "@/actions/singup";
+import { signUpHandler } from "@/actions/singup";
 
 export default function SignUpPage() {
   const [errors, setErrors] = useState({});
@@ -74,7 +74,7 @@ export default function SignUpPage() {
     const email = formData.get("email");
     const password = formData.get("password");
 
-    const data = await handler({
+    const data = await signUpHandler({
       firstName,
       lastName,
       userName,

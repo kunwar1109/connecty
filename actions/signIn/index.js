@@ -1,6 +1,7 @@
 "use server";
+import { cookies } from "next/headers";
 
-export async function handler(data) {
+export async function signInHandler(data) {
   const { userName, email, password } = data;
 
   const response = await fetch("http://localhost:8000/auth/login", {
@@ -15,5 +16,6 @@ export async function handler(data) {
     }),
   });
   const res = await response.json();
+  await cookies().set("userId", res.userId);
   return res;
 }

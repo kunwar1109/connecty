@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { PasswordInput } from "../_components/password-input";
 import { SubmitButton } from "../_components/submit-button";
 import { useRef, useState } from "react";
-import { handler } from "@/actions/signIn";
+import { signInHandler } from "@/actions/signIn";
 import { redirect } from "next/navigation";
 
 export default function SignInPage() {
@@ -36,7 +36,7 @@ export default function SignInPage() {
     }
 
     console.log(payload);
-    const resp = await handler(payload);
+    const resp = await signInHandler(payload);
     //if success -> redirect to chats
     console.log(resp);
     if (resp?.token) {
